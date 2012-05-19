@@ -69,6 +69,10 @@ public class Trader extends CitizensNPC {
     public CitizensNPCType getType() {
         return new TraderType();
     }
+    
+    public boolean isFree() {
+        return this.free;
+    }
 
     public boolean isLocked() {
         return locked;
@@ -100,10 +104,17 @@ public class Trader extends CitizensNPC {
 
     @Override
     public void onRightClick(Player player, HumanNPC npc) {
+        
         if (currentTask != null)
             currentTask.ensureValid();
+        /*
         if (!free) {
-            player.sendMessage(ChatColor.GRAY + "Trader is in use.");
+            player.sendMessage(ChatColor.GRAY + "Trader is busy! Stop by in a couple of minutes.");
+            return;
+        }
+        */
+        if (currentTask != null){
+            player.sendMessage(ChatColor.GRAY + "Sorry! Trader is currently serving " + currentTask.getPlayer().getName());
             return;
         }
         free = false;

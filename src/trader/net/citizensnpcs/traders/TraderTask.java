@@ -82,6 +82,10 @@ public class TraderTask implements Listener {
         }
         return trader.getStockable(item.getTypeId(), durability, selling);
     }
+    
+    public Player getPlayer() {
+        return this.player;
+    }
 
     public void ensureValid() {
         if (!player.isOnline())
